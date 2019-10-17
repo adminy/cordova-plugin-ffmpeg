@@ -3,17 +3,30 @@
 
 @implementation HWPFFMpeg
 
-- (void)exec:(CDVInvokedUrlCommand*)command
-{
-    //TODO: call ffmpeg-mobile and do the processing ...
-    //[MobileFFmpeg execute: @"-i file1.mp4 -c:v mpeg4 file2.mp4"];
+- (void)exec:(CDVInvokedUrlCommand*)command {
     //https://github.com/tanersener/mobile-ffmpeg/wiki/IOS
-    NSString* name = [[command arguments] objectAtIndex:0];
-    NSString* msg = [NSString stringWithFormat: @"Hello, %@", name];
+    NSString* cmd = [[command arguments] objectAtIndex:0];
+    NSString* responseToUser;
+    [MobileFFmpeg execute: cmd];
+
+    int returnCode = [MobileFFmpeg getLastReturnCode];
+    NSString *output = [MobileFFmpeg getLastCommandOutput];
+
+    if (returnCode == RETURN_CODE_SUCCESS) {
+        responseToUser = [NSString stringWithFormat: @"success out=%@", output];
+
+    } else if (returnCode == RETURN_CODE_CANCEL) {
+        responseToUser = [NSString stringWithFormat: @"canceld"];
+
+    } else {
+        responseToUser = [NSString stringWithFormat: @"failure code=%d out=%@", returnCode, output];
+
+    }
+
 
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
-                               messageAsString:msg];
+                               messageAsString:responseToUser];
 
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
