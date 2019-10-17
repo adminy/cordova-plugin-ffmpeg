@@ -24,6 +24,9 @@
     </config-file>
 
     <source-file src="src/android/FFMpeg.java" target-dir="src/com/marin/plugin/"/>
+    <!-- mobile ffmpeg framework for android using gradle -->
+    <framework custom="true" src="src/android/mobile-ffmpeg-x2.gradle" type="gradleReference" />
+
   </platform>
 
   <platform name="ios">
@@ -36,5 +39,8 @@
 
     <header-file src="src/ios/HWPFFMpeg.h" target-dir="FFMpegPlugin"/>
     <source-file src="src/ios/HWPFFMpeg.m" target-dir="FFMpegPlugin"/>
+    <!-- mobile ffmpeg framework for ios using cocoa pods -->
+    <framework src="mobile-ffmpeg-full" type="podspec" spec="~> 4.2.2" />
+
   </platform>
 </plugin>

@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/don/cordova-plugin-ffmpeg.git"
+    "url": "git+https://github.com/adminy/cordova-plugin-ffmpeg.git"
   },
   "keywords": [
     "cordova",
@@ -24,7 +24,7 @@
   "author": "Marin Bivol",
   "license": "Apache-2",
   "bugs": {
-    "url": "https://github.com/don/cordova-plugin-ffmpeg/issues"
+    "url": "https://github.com/adminy/cordova-plugin-ffmpeg/issues"
   },
-  "homepage": "https://github.com/don/cordova-plugin-ffmpeg#readme"
+  "homepage": "https://github.com/adminy/cordova-plugin-ffmpeg#readme"
 }
