@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.marin.ffmpeg"
+        version="0.7.0">
+
+  <name>FFMpeg</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/ffmpeg.js" target="js/ffmpeg.js"/>
+
+  <js-module src="www/ffmpeg.js" name="ffmpeg">
+    <clobbers target="ffmpeg" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="FFMpeg">
+        <param name="android-package" value="com.marin.plugin.FFMpeg"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/FFMpeg.java" target-dir="src/com/marin/plugin/"/>
+  </platform>
+
+  <platform name="ios">
+    
+    <config-file target="config.xml" parent="/widget">
+      <feature name="FFMpeg">
+        <param name="ios-package" value="HWPFFMpeg" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/HWPFFMpeg.h" target-dir="FFMpegPlugin"/>
+    <source-file src="src/ios/HWPFFMpeg.m" target-dir="FFMpegPlugin"/>
+  </platform>
+</plugin>

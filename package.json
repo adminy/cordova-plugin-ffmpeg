@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-ffmpeg",
+  "version": "0.1.0",
+  "description": "Cordova FFMPEG plugin with mobile-ffmpeg",
+  "cordova": {
+    "id": "cordova-plugin-ffmpeg",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/don/cordova-plugin-ffmpeg.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "ffmpeg",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Marin Bivol",
+  "license": "Apache-2",
+  "bugs": {
+    "url": "https://github.com/don/cordova-plugin-ffmpeg/issues"
+  },
+  "homepage": "https://github.com/don/cordova-plugin-ffmpeg#readme"
+}
