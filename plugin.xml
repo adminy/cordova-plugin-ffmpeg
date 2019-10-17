@@ -40,7 +40,13 @@
     <header-file src="src/ios/HWPFFMpeg.h" target-dir="FFMpegPlugin"/>
     <source-file src="src/ios/HWPFFMpeg.m" target-dir="FFMpegPlugin"/>
     <!-- mobile ffmpeg framework for ios using cocoa pods -->
-    <framework src="mobile-ffmpeg-full" type="podspec" spec="~> 4.2.2" />
-
+    <podspec>
+      <config>
+          <source url="https://github.com/CocoaPods/Specs.git"/>
+      </config>
+      <pods use-frameworks="true">
+          <pod name="mobile-ffmpeg-full" spec="~> 4.2.2" />
+      </pods>
+    </podspec>
   </platform>
 </plugin>
