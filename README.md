@@ -1,4 +1,4 @@
-# Cordova FFMPEG (mp3) Plugin
+# Cordova FFMPEG Plugin
 
 Simple plugin that binds mobile ffmpeg to execute ffmpeg commands
 
