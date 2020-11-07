@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ffmpeg",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Cordova FFMPEG plugin with mobile-ffmpeg",
   "cordova": {
     "id": "cordova-plugin-ffmpeg",

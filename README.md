@@ -7,7 +7,11 @@ Simple plugin that binds mobile ffmpeg to execute ffmpeg commands
 Create a new Cordova Project
 
     $ cordova create hello com.example.helloapp Hello
-    
+
+make sure you have cocoapods **On MacOS**
+>`sudo gem install cocoapods`
+
+
 Install the plugin
 
     $ cd hello

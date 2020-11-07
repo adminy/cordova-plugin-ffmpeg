@@ -4,27 +4,19 @@ import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import com.arthenica.mobileffmpeg.FFmpeg;
-
+import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
+ // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-
         if (action.equals("exec")) {
-            
-            //TODO: call ffmpeg-mobile and do the processing ...
-            //FFmpeg.execute("-i file1.mp4 -c:v mpeg4 file2.mp4"); 
-            //https://github.com/tanersener/mobile-ffmpeg/wiki/Android
-            String name = data.getString(0);
-            String message = "Hello, " + name;
-            callbackContext.success(message);
-
+            int returnCode = FFmpeg.execute(data.getString(0));
+            if (returnCode == RETURN_CODE_SUCCESS)
+                callbackContext.success("Done");
+            else
+                callbackContext.failure("Error Code: " + returnCode);
             return true;
-
-        } else {
-            
-            return false;
-
-        }
+        } else return false;
     }
 }
