@@ -1,5 +1,6 @@
 #import "HWPFFMpeg.h"
 #import <mobileffmpeg/MobileFFmpeg.h>
+#import <mobileffmpeg/MobileFFmpegConfig.h>
 
 @implementation HWPFFMpeg
 
@@ -9,8 +10,8 @@
     NSString* responseToUser;
     [MobileFFmpeg execute: cmd];
 
-    int returnCode = [MobileFFmpeg getLastReturnCode];
-    NSString *output = [MobileFFmpeg getLastCommandOutput];
+    int returnCode = [MobileFFmpegConfig getLastReturnCode];
+    NSString *output = [MobileFFmpegConfig getLastCommandOutput];
 
     if (returnCode == RETURN_CODE_SUCCESS) {
         responseToUser = [NSString stringWithFormat: @"success out=%@", output];
