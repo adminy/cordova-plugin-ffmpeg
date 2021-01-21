@@ -4,15 +4,25 @@
 
 @implementation HWPFFMpeg
 
+NSMutableDictionary *mappings;
+
+
 - (void)exec:(CDVInvokedUrlCommand*)command {
+    
+    if (mappings == nil){
+        mappings = [NSMutableDictionary new];
+    }
+    
     //https://github.com/tanersener/mobile-ffmpeg/wiki/IOS
     NSString* cmd = [[command arguments] objectAtIndex:0];
+    long executionId = [MobileFFmpeg executeAsync:cmd withCallback:self];
+    [mappings setValue:command.callbackId forKey:[NSString stringWithFormat:@"%li", executionId]];
+
+}
+
+- (void)executeCallback:(long)executionId :(int)returnCode {
     NSString* responseToUser;
-    [MobileFFmpeg execute: cmd];
-
-    int returnCode = [MobileFFmpegConfig getLastReturnCode];
     NSString *output = [MobileFFmpegConfig getLastCommandOutput];
-
     if (returnCode == RETURN_CODE_SUCCESS) {
         responseToUser = [NSString stringWithFormat: @"success out=%@", output];
 
@@ -29,7 +39,8 @@
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:responseToUser];
 
-    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:[mappings valueForKey:[NSString stringWithFormat:@"%li", executionId]]];
+    [mappings removeObjectForKey:[NSString stringWithFormat:@"%li", executionId]];
 }
 
 @end
