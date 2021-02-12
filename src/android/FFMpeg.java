@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import com.arthenica.mobileffmpeg.ExecuteCallback;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.arthenica.mobileffmpeg.Config;
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
  // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
@@ -15,8 +16,9 @@ public class FFMpeg extends CordovaPlugin {
             FFmpeg.executeAsync(data.getString(0), new ExecuteCallback() {
                 @Override
                 public void apply(long executionId, int returnCode) {
+                    String result = String.format("Done out=%s", Config.getLastCommandOutput());
                     if (returnCode == RETURN_CODE_SUCCESS)
-                        callbackContext.success("Done");
+                        callbackContext.success(result);
                     else
                         callbackContext.error("Error Code: " + returnCode);
                 }
