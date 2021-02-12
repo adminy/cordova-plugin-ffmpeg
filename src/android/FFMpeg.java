@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import com.arthenica.mobileffmpeg.ExecuteCallback;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.arthenica.mobileffmpeg.Config;
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
  // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
