@@ -14,9 +14,10 @@ public class FFMpeg extends CordovaPlugin {
         if (action.equals("exec")) {
             FFmpeg.executeAsync(data.getString(0), new ExecuteCallback() {
                 @Override
+                String result = String.format("Done out=%s", Config.getLastCommandOutput());
                 public void apply(long executionId, int returnCode) {
                     if (returnCode == RETURN_CODE_SUCCESS)
-                        callbackContext.success("Done");
+                        callbackContext.success(result);
                     else
                         callbackContext.error("Error Code: " + returnCode);
                 }
