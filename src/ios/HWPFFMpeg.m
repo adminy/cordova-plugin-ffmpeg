@@ -20,6 +20,25 @@ NSMutableDictionary *mappings;
 
 }
 
+- (void)probe:(CDVInvokedUrlCommand*)command {
+    NSString* filePath = [[command arguments] objectAtIndex:0];
+    MediaInformation *mediaInformation = [MobileFFprobe getMediaInformation:filePath];
+    int returnCode = [MobileFFmpegConfig getLastReturnCode];
+
+    if(returnCode == RETURN_CODE_SUCCESS) {
+        CDVPluginResult* result = [CDVPluginResult
+                               resultWithStatus:CDVCommandStatus_OK
+                               messageAsDictionary:[mediaInformation getAllProperties]];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    } else {
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_ERROR
+                                   messageAsString:[MobileFFmpegConfig getLastCommandOutput]];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
+
 - (void)executeCallback:(long)executionId :(int)returnCode {
     NSString* responseToUser;
     NSString *output = [MobileFFmpegConfig getLastCommandOutput];
